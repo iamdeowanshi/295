@@ -19,8 +19,8 @@
 
     <com.abacus.poc295.AutoFitTextureView
         android:id="@+id/texture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" />
 
@@ -32,6 +32,7 @@
         <include layout="@layout/crop_control" />
 
     </RelativeLayout>
+
     <FrameLayout
         android:id="@+id/control"
         android:layout_width="match_parent"

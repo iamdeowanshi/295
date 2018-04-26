@@ -2,6 +2,7 @@ package com.abacus.poc295.service;
 
 
 import com.abacus.poc295.Config;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +16,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by aaditya on 10/20/17.
@@ -41,16 +44,20 @@ public class ApiModule {
         return apiModule;
     }
 
-    public AbacusService getWeatherService() {
+    public AbacusService getAbacusService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Config.OPEN_WEATHER_URL)
                 .client(provideOkHttpClient(provideInterceptors()))
+                .addConverterFactory(provideGsonConverterFactory(new Gson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
         return retrofit.create(AbacusService.class);
     }
 
+    public Converter.Factory provideGsonConverterFactory(Gson gson) {
+        return GsonConverterFactory.create(gson);
+    }
     public PlacesService getPlacesService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Config.TIMEZONE_URL)

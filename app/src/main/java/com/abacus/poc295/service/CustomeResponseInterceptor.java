@@ -27,12 +27,12 @@ public class CustomeResponseInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Response response = chain.proceed(request);
-        if (response.code() != 200) {
+        /*if (response.code() != 200) {
             Response r = null;
             try { r = makeTokenRefreshCall(request, chain); }
             catch (JSONException e) { e.printStackTrace(); }
             return r;
-        }
+        }*/
         Timber.d(response.toString());
         return response;
     }

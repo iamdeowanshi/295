@@ -27,7 +27,7 @@ public class Config {
     // API related constants/configurations - used in ApiModule
     //--------------------------------------------------------------------------------
     public static final String API_BASE_URL_PRODUCTION = "https://api.mathpix.com/v2/latex";
-    public static final String API_BASE_URL_MOCK = "https://api.mathpix.com/v2/latex";
+    public static final String API_BASE_URL_MOCK = "https://api.mathpix.com/v3/";
 
     public static final String WEATHER_ICON_URL = "http://openweathermap.org/img/w/";
     public static final String TIMEZONE_URL = "http://api.timezonedb.com/v2/";
@@ -47,13 +47,14 @@ public class Config {
     }};
 
     // Key
-    public static final String KEY_ = "b2c2f73ec36ac4a0a2ccd2107e34f54d";
+    public static final String KEY_ = "04e355de5c5e2857a452";
     public static final String KEY_TIMEZONE = "AZB2TC5HOU68";
     public static final String FORMAT_TIMEZONE = "json";
     public static final String BY_TIMEZONE = "position";
 
 
-    public static final String GOOGLE_PLACES_KEY = "AIzaSyAU9ShujnIg3IDQxtPr7Q1qOvFVdwNmWc4";
+    public static final String APP_ID = "akhilesh_deowanshi_hotmail_com";
+
 
     public static final List<String> KEYS = Arrays.asList(
             "b2c2f73ec36ac4a0a2ccd2107e34f54d",

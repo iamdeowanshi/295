@@ -7,7 +7,7 @@ import com.abacus.poc295.base.Presenter;
  * Created by aaditya on 10/21/17.
  */
 
-public interface ForecastPresenter extends Presenter {
+public interface LatexPresenter extends Presenter<LatexViewInteractor> {
 
-
+    void getLatex(String base64);
 }

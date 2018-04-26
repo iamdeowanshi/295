@@ -371,10 +371,10 @@ public class CameraFragment extends Fragment
         Rect cropFrame = new Rect(mCropControl.getLeft(), mCropControl.getTop(), mCropControl.getRight(), mCropControl.getBottom());
 
         int inset = (int) getResources().getDimension(R.dimen.crop_corner_width_halved);
-        int viewWidth = mTextureView.getWidth();
-        int viewHeight = mTextureView.getHeight();
-        int cropWidth = cropFrame.width();
-        int cropHeight = cropFrame.height();
+        int viewWidth = getView().getWidth();
+        int viewHeight = getView().getHeight();
+        int cropWidth = cropFrame.width() - inset * 2;
+        int cropHeight = cropFrame.height() - inset * 2;
 
         int centerX = bm.getWidth() / 2;
         int centerY = bm.getHeight() / 2;
