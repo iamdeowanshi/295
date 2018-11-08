@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.abacus.poc295.cropcontrol.CropView
+<com.abacus.android.cropcontrol.CropView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:id="@+id/crop_control"
@@ -8,7 +8,7 @@
     android:layout_width="@dimen/crop_control_width"
     android:layout_height="@dimen/crop_control_height">
 
-    <com.abacus.poc295.cropcontrol.CornerView
+    <com.abacus.android.cropcontrol.CornerView
         android:id="@+id/top_left_corner"
         android:layout_width="@dimen/crop_corner_width"
         android:layout_height="@dimen/crop_corner_width"
@@ -17,7 +17,7 @@
         custom:corner="topleft"
         />
 
-    <com.abacus.poc295.cropcontrol.CornerView
+    <com.abacus.android.cropcontrol.CornerView
         android:id="@+id/top_right_corner"
         android:layout_width="@dimen/crop_corner_width"
         android:layout_height="@dimen/crop_corner_width"
@@ -25,7 +25,7 @@
         android:layout_alignParentRight="true"
         custom:corner="topright"/>
 
-    <com.abacus.poc295.cropcontrol.CornerView
+    <com.abacus.android.cropcontrol.CornerView
         android:id="@+id/bottom_right_corner"
         android:layout_width="@dimen/crop_corner_width"
         android:layout_height="@dimen/crop_corner_width"
@@ -33,7 +33,7 @@
         android:layout_alignParentRight="true"
         custom:corner="bottomright"/>
 
-    <com.abacus.poc295.cropcontrol.CornerView
+    <com.abacus.android.cropcontrol.CornerView
         android:id="@+id/bottom_left_corner"
         android:layout_width="@dimen/crop_corner_width"
         android:layout_height="@dimen/crop_corner_width"
@@ -50,10 +50,11 @@
 
     <View
         android:id="@+id/view_scan_line"
-        android:layout_width="4dp"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignLeft="@+id/image_view"
+        android:layout_alignRight="@+id/image_view"
+        android:visibility="visible"
         android:background="@color/colorAccent" />
 
-</com.abacus.poc295.cropcontrol.CropView>
+</com.abacus.android.cropcontrol.CropView>

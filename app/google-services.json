@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "804846675443",
+    "firebase_url": "https://dazzling-howl-220620.firebaseio.com",
+    "project_id": "dazzling-howl-220620",
+    "storage_bucket": "dazzling-howl-220620.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804846675443:android:b4b292902484fb04",
+        "android_client_info": {
+          "package_name": "com.abacus.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804846675443-5oaltodabo5g08q0deag9bablf1vh1hd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEW9SNo7mcZSTlV6rdFZxv-Ww-I1NWjYQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

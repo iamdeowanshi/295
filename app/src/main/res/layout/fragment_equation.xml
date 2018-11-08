@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="40dp">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question :"
+        android:textStyle="bold"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtQuestion"
+        android:text="I have 100 pencils.I gave away 10. How many pencils I have left?"
+        android:inputType="textAutoComplete|textAutoCorrect|textMultiLine"
+        android:layout_margin="10dp"/>
+
+    <katex.hourglass.in.mathlib.MathView
+        app:setTextColor="@color/black"
+        app:setTextSize="10sp"
+        app:setClickable="true"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mathView"/>
+
+    <TextView
+        android:id="@+id/txtSolution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="Solution"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="10dp"/>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:id="@+id/btnSolve"
+            android:textColor="@color/white"
+            android:background="@color/colorAccent"
+            android:text="Solve"/>
+
+        <Button
+            android:id="@+id/btnReTake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Re-Take"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@color/colorAccent"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/progress"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/capture"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
