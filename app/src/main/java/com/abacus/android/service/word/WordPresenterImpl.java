@@ -21,14 +21,10 @@ public class WordPresenterImpl extends BasePresenter<WordViewInteractor> impleme
     private WordService wordService = ApiModule.getInstance().getWordService();
 
     @Override
-    public void getSolution(String question) {
+    public void getSolution(WordProblem question) {
         getViewInteractor().showProgress();
-        RequestBody requestBody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("question", question).build();
-        HashMap<String, String> bodyMap = new HashMap<>();
-        bodyMap.put("question", question);
-        Observable<WordProblem> observable = wordService.getSolution(requestBody);
+
+        Observable<WordProblem> observable = wordService.getSolution(question);
         new CompositeDisposable().add(observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,6 +45,31 @@ public class WordPresenterImpl extends BasePresenter<WordViewInteractor> impleme
                     @Override
                     public void onComplete() {
 
+                    }}));
+    }
+
+    @Override
+    public void sendFeedBack(WordProblem problem) {
+        getViewInteractor().showProgress();
+        Observable<Void> observable = wordService.sendFeedBack(problem);
+        new CompositeDisposable().add(observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Void>() {
+                    @Override
+                    public void onNext(Void aVoid) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //getViewInteractor().onError("Error occurred while processing your request. Try again");
+                        getViewInteractor().hideProgress();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getViewInteractor().hideProgress();
                     }}));
     }
 }

@@ -1,0 +1,70 @@
+<TableLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TableRow android:gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:id="@+id/operand1"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:layout_margin="10dp"/>
+
+
+        <EditText
+            android:id="@+id/operand2"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <Spinner
+            android:id="@+id/operator_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_gravity="center_vertical"/>
+
+    </TableRow>
+
+    <TableRow android:gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/button_cancel_user_data"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@color/colorAccent"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginBottom="20dp"/>
+
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Send"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@color/colorAccent"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginBottom="20dp"/>
+
+    </TableRow>
+
+</TableLayout>

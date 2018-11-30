@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.abacus.android.base.BaseActivity;
 import com.abacus.android.model.User;
+import com.abacus.android.service.logEvent.LogEvent;
+import com.abacus.android.service.logEvent.LogEventImp;
 import com.abacus.android.util.PreferenceUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -23,6 +25,9 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +43,8 @@ public class LoginActivity extends BaseActivity implements OnCompleteListener {
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     private PreferenceUtil util;
+    private User user;
+    private LogEvent logPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +53,7 @@ public class LoginActivity extends BaseActivity implements OnCompleteListener {
         ButterKnife.bind(this);
         util = new PreferenceUtil(this);
 
-        User user = (User) util.read("USER", User.class);
+        user = (User) util.read("USER", User.class);
 
         if (user != null) {
             startActivity(HomeActivity.class, null);
@@ -55,23 +62,34 @@ public class LoginActivity extends BaseActivity implements OnCompleteListener {
 
         mAuth = FirebaseAuth.getInstance();
         init();
+        logPresenter = new LogEventImp();
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        saveToPreference(currentUser);
+        User user = saveToPreference(currentUser);
+        Map<String, String> logMap = new HashMap<>();
+        logMap.put("userID", user.getId());
+        logMap.put("userEmail", user.getEmail());
+        logMap.put("userActivity", "Login");
+        logMap.put("other","N/A");
+        logPresenter.logEvent(logMap);
         Toast.makeText(this, currentUser.getDisplayName(), Toast.LENGTH_LONG).show();
         startActivity(HomeActivity.class, null);
+        mGoogleSignInClient.signOut();
         finish();
     }
 
-    private void saveToPreference(FirebaseUser currentUser) {
+    private User saveToPreference(FirebaseUser currentUser) {
 
         User user = new User();
+        user.setId(currentUser.getUid());
         user.setName(currentUser.getDisplayName());
         user.setEmail(currentUser.getEmail());
         user.setPhotoUrl(currentUser.getPhotoUrl().toString());
 
         util.save("USER", user);
+
+        return user;
 
     }
 
@@ -101,29 +119,21 @@ public class LoginActivity extends BaseActivity implements OnCompleteListener {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
         }
 
         progress.setVisibility(View.GONE);
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            Toast.makeText(this, account.getDisplayName(), Toast.LENGTH_LONG).show();
-            firebaseAuthWithGoogle(account);
-            // Signed in successfully, show authenticated UI.
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            //updateUI(null);
-        }
-    }
-
     private void firebaseAuthWithGoogle(GoogleSignInAccount acc) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acc.getIdToken(), null);
         mAuth.signInWithCredential(credential).addOnCompleteListener(this);
-
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -140,5 +150,13 @@ public class LoginActivity extends BaseActivity implements OnCompleteListener {
             //Log.w(TAG, "signInWithCredential:failure", task.getException());
             Snackbar.make(findViewById(R.id.root), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+/*        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (user == null && currentUser != null )
+            updateUI(currentUser);*/
     }
 }

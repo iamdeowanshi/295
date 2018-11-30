@@ -3,6 +3,8 @@
     package="com.abacus.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -34,12 +36,18 @@
             android:name=".HomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_home"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SettingActivity"
             android:label="@string/title_activity_setting"
             android:theme="@style/AppTheme" />
-        <activity android:name=".BookmarkActivity"></activity>
+        <activity
+            android:name=".BookmarkActivity"
+            android:label="@string/title_activity_bookmark"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".AnalyticsActivity"></activity>
+
     </application>
 
 </manifest>

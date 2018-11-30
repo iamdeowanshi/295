@@ -33,10 +33,12 @@ public class LatexPresenterImpl  extends BasePresenter<LatexViewInteractor> impl
                 .subscribeWith(new DisposableObserver<LatexResponse>() {
                     @Override
                     public void onNext(LatexResponse latexResponse) {
+                        getViewInteractor().hideProgress();
 
                         if (latexResponse.getLatex_confidence() > 0.5) {
                             getViewInteractor().onLatexResult(latexResponse);
-                            getViewInteractor().hideProgress();
+                        } else {
+                            getViewInteractor().onError("Can't process Image");
                         }
                     }
 

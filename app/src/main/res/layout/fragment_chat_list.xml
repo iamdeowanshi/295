@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/root">
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/list"
-    android:name="com.abacus.android.fragment.ChatFragment"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-    tools:context=".fragment.ChatFragment"
-    tools:listitem="@layout/fragment_chat_bot" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:name="com.abacus.android.fragment.ChatFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:context=".fragment.ChatFragment"
+        tools:listitem="@layout/fragment_chat_bot" />
 
     <LinearLayout
         android:id="@+id/layout_keyboard"

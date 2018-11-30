@@ -16,7 +16,9 @@ import retrofit2.http.Query;
 
 public interface WordService {
 
-    @POST("/")
-    Observable<WordProblem> getSolution(@Body RequestBody question);
+    @POST("/wordproblem/solve")
+    Observable<WordProblem> getSolution(@Body WordProblem wordProblem);
 
+    @POST("/wordproblem/feedback")
+    Observable<Void> sendFeedBack(@Body WordProblem problem);
 }

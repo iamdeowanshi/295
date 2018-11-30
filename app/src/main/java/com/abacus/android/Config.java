@@ -27,7 +27,7 @@ public class Config {
     // API related constants/configurations - used in ApiModule
     //--------------------------------------------------------------------------------
     public static final String API_BASE_URL_PRODUCTION = "https://api.mathpix.com/v3/";
-    public static final String WORD_PROBLEM = "http://54.212.126.137:5000";
+    public static final String WORD_PROBLEM = "http://34.220.72.152:5000";
 
     public static final String TIMEZONE_URL = "http://api.timezonedb.com/v2/";
 
@@ -36,7 +36,7 @@ public class Config {
     public static final String WORD_PROBLEM_URL = WORD_PROBLEM;
 
     public static final String LATEX_URL = API_BASE_URL_PRODUCTION;
-    public static final String PLACES_URL = "https://maps.googleapis.com/maps/api/place/";
+    public static final String LOGGING_URL = "http://34.220.72.152:8081";
 
 
     // Common http headers required to be added by interceptor
@@ -46,7 +46,7 @@ public class Config {
     }};
 
     // Key
-    public static final String KEY_ = "04e355de5c5e2857a452";
+    public static final String KEY_ = "91221591f3415b3ea83e";
     public static final String KEY_TIMEZONE = "AZB2TC5HOU68";
     public static final String FORMAT_TIMEZONE = "json";
     public static final String BY_TIMEZONE = "position";
@@ -56,11 +56,7 @@ public class Config {
 
 
     public static final List<String> KEYS = Arrays.asList(
-            "b2c2f73ec36ac4a0a2ccd2107e34f54d",
-            "7f225dfb054c4db8e8427a9e07753d77",
-            "f3dae0e698039afa2098348484241311",
-            "9eb1d8aed3bdc09c360faf7e61c01c51",
-            "1cac6167e047af242e771ff28881f2ab",
-            "fe8264bdaae5649e2ac309b1e5db924b");
+            "91221591f3415b3ea83e",
+            "04e355de5c5e2857a452");
 
 }

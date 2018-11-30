@@ -4,8 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.abacus.android.model.History;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,6 +18,7 @@ import java.util.Set;
 
 public class PreferenceUtil {
 
+    private static final String HISTORY = "_history";
     private Gson gson = new Gson();
 
     private SharedPreferences preferences;
@@ -112,6 +117,23 @@ public class PreferenceUtil {
             return defaultValue;
         }
     }
+
+    public void saveHistory(List<History> historyList) {
+        String usersJson = gson.toJson(historyList);
+
+        save(HISTORY, usersJson);
+    }
+
+
+    public List<History> readHistory() {
+        String usersJson = readString(HISTORY, "[]");
+
+        Type listType = new TypeToken<List<History>>() {
+        }.getType();
+
+        return gson.fromJson(usersJson, listType);
+    }
+
 
     private SharedPreferences.Editor getEditor() {
         return preferences.edit();

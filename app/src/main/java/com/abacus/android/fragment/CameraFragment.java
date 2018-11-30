@@ -144,7 +144,7 @@ public class CameraFragment extends BaseFragment implements LatexViewInteractor 
 
 
     private void showErrorAndReset(String errMessage) {
-        Toast.makeText(getContext(), errMessage, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), errMessage, Toast.LENGTH_LONG).show();
         startPreview();
         resetDragControl();
     }

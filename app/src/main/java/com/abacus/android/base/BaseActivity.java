@@ -1,7 +1,9 @@
 package com.abacus.android.base;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 
 import com.abacus.android.Config;
+import com.abacus.android.service.NetworkChangeReceiver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,12 +37,25 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean isVisible;
 
     private Map<Integer, PermissionCallback> permissionCallbackMap = new HashMap<>();
+    private BroadcastReceiver receiver;
 
     @Override
     protected void onStart() {
         super.onStart();
         //noinspection WrongConstant
         setRequestedOrientation(orientation);
+
+        receiver = new NetworkChangeReceiver();
+        IntentFilter intent = new IntentFilter();
+        intent.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        intent.addAction("android.net.wifi.WIFI_STATE_CHANGED");
+        registerReceiver(receiver,intent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
     }
 
     @Override
@@ -153,6 +169,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+
 
     /**
      * Sets orientation to portrait only.

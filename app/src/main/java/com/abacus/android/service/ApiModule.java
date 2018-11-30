@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -73,6 +74,9 @@ public class ApiModule {
 
     public OkHttpClient provideOkHttpClient(List<Interceptor> interceptors) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.connectTimeout(30,TimeUnit.SECONDS);
+        builder.writeTimeout(30, TimeUnit.SECONDS);
+        builder.readTimeout(30, TimeUnit.SECONDS);
 
         for (Interceptor interceptor : interceptors) {
             builder.addInterceptor(interceptor);
@@ -137,4 +141,13 @@ public class ApiModule {
         return interceptor;
     }
 
+    public LogService getLogService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Config.LOGGING_URL)
+                .client(provideOkHttpClient(provideInterceptors()))
+                .addConverterFactory(provideGsonConverterFactory(new Gson()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+        return retrofit.create(LogService.class);    }
 }

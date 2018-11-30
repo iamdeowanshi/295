@@ -1,9 +1,9 @@
 package com.abacus.android.model;
 
 
-import com.abacus.android.evaluator.Constants;
-import com.abacus.android.evaluator.ExprInput;
-import com.abacus.android.evaluator.FormatExpression;
+import com.abacus.android.equation.evaluator.Constants;
+import com.abacus.android.equation.evaluator.ExprInput;
+import com.abacus.android.equation.evaluator.FormatExpression;
 
 /**
  * Created by sunil28 on 11/5/18.
@@ -34,7 +34,7 @@ public class SolveItem extends ExprInput {
         if (inp.contains("X")) {
             var = "X";
         } else {
-            var = "x";
+            var = getVar(inp);
         }
 
         //2x + 1 = 2 ....
@@ -90,5 +90,16 @@ public class SolveItem extends ExprInput {
      */
     public String getExpr() {
         return this.leftExpr + "==" + rightExpr;
+    }
+
+    public String getVar(String input){
+        String var="x";
+        //Set<String> varSet = new HashSet<>();
+        for(char c : input.toCharArray()){
+            if(Character.isLetter(c)){
+                var=Character.toString(c).toLowerCase();
+            }
+        }
+        return var;
     }
 }
