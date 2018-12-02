@@ -325,7 +325,8 @@ public class WordProblemFragment extends BaseFragment implements WordViewInterac
     public void onClear() {
         bookMark.setImageResource(R.drawable.ic_star);
         edtQuestion.setText("");
-        txtSolution.setText("Solution : ");
+        txtSolution.setText("" +
+                "");
     }
 
     private void sendLog(String value) {

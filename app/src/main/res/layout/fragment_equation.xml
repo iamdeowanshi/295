@@ -46,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edtQuestion"
+        android:backgroundTint="@color/colorAccent"
         android:text="I have 100 pencils.I gave away 10. How many pencils I have left?"
         android:inputType="textAutoComplete|textAutoCorrect|textMultiLine"
         android:layout_margin="7dp"/>
@@ -148,6 +149,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <TextView

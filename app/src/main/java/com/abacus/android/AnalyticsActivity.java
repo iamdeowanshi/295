@@ -64,6 +64,7 @@ public class AnalyticsActivity extends BaseActivity {
 
             count++;
         }
+        latex = latex.replaceAll("//*", "");
         webView.loadData("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +

@@ -224,6 +224,8 @@ public class EquationFragment extends BaseFragment {
         if (requestCode == 1 && resultCode == 2) {
             String latex = data.getStringExtra("LATEX");
             edtQuestion.setText(latex);
+            txtSolution.setText("");
+            mathView.setVisibility(View.VISIBLE);
             viewGraph.setVisibility(View.VISIBLE);
             edtQuestion.setVisibility(View.GONE);
             mathView.setDisplayText("$" + latex + "$");
