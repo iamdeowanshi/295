@@ -192,6 +192,10 @@ public class WordProblemFragment extends BaseFragment implements WordViewInterac
 
     @OnClick(R.id.btnSolve)
     public void onViewClicked() {
+        if (edtQuestion.getText().toString().trim().isEmpty()){
+            Toast.makeText(getContext(), "Please Enter problem to solve", Toast.LENGTH_LONG);
+            return;
+        }
         User user = ((HomeActivity)getActivity()).getUser();
         problem = new WordProblem();
         problem.setEmail(user.getEmail());

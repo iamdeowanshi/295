@@ -238,6 +238,11 @@ public class EquationFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.btnSolve:
                 //loadGraph(edtQuestion.getText().toString());
+                if (edtQuestion.getText().toString().trim().isEmpty()){
+                    Toast.makeText(getContext(), "Please Enter equation to solve", Toast.LENGTH_LONG);
+                    return;
+                }
+
                 solve(edtQuestion.getText().toString());
                 //sendLog("Equation");
                 break;

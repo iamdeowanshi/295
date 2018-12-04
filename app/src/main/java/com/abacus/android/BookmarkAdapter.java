@@ -135,7 +135,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
             logMap.put("other","N/A");
             logMap.put("userID", user.getId());
             logMap.put("userEmail", user.getEmail());
-            logMap.put("userActivity", "Logout");
+            logMap.put("userActivity", "BookmarkRemoved");
 
             new LogEventImp().logEvent(logMap);
         }
