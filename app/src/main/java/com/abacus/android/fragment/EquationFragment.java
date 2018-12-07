@@ -21,6 +21,7 @@ import com.abacus.android.HomeActivity;
 import com.abacus.android.R;
 import com.abacus.android.base.BaseFragment;
 import com.abacus.android.equation.parser.InputClassifier;
+import com.abacus.android.equation.solver.RPNCalc;
 import com.abacus.android.model.Bookmark;
 import com.abacus.android.model.History;
 import com.abacus.android.model.User;
@@ -136,7 +137,11 @@ public class EquationFragment extends BaseFragment {
         setupKatex();
         Bundle bundle = getArguments();
         if ( bundle != null) {
-            mathView.setDisplayText("$" + bundle.getString("value") + "$");
+            if( bundle.getInt("fragment") == 0) {
+                mathView.setDisplayText("$" + bundle.getString("value") + "$");
+                edtQuestion.setText(bundle.getString("value"));
+                edtQuestion.setVisibility(View.GONE);
+            }
         } else {
             startCamera();
         }
@@ -155,8 +160,29 @@ public class EquationFragment extends BaseFragment {
 
     private void solve(String input) {
         InputClassifier inputClassifier = new InputClassifier(getContext());
+        input = input.replace("{ \\wedge }","");
         String solution  = inputClassifier.executeClassifier(input);
         solution = formatOutput(solution);
+        if (inputClassifier.getOperation().equalsIgnoreCase("General")){
+            input = input.replace("{","(").replace("}",")");
+            List<String> steps = new RPNCalc(input).eval().getSteps();
+            StringBuilder sb  = new StringBuilder();
+            int count = 1;
+            for (int i =0 ; i< steps.size() ; i++) {
+                if ((i+1 )%2 != 0) {
+                    sb.append("Step " + count + " : ");
+                    count++;
+                    sb.append(steps.get(i));
+                    sb.append("\n");
+                } else {
+                    sb.append("\t\t");
+                    sb.append(steps.get(i));
+                    sb.append("\n\n");
+                }
+            }
+
+            solution = sb.toString();
+        }
         sendLog("equation-solver", inputClassifier.getOperation());
         txtSolution.setText("\n" + solution);
         History history = new History();
@@ -303,65 +329,6 @@ public class EquationFragment extends BaseFragment {
         activitymap.put("other", subValue);
         ((HomeActivity)getActivity()).logEvent(activitymap);
     }
-
-    /*public void loadGraph(String latex) {
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
-        webView.getSettings().setLoadWithOverviewMode(true);
-
-        webView.setInitialScale(200);
-        webView.getSettings().setUseWideViewPort(false);
-        webView.getSettings().setMinimumFontSize(16);
-        webView.getSettings().setUserAgentString(DESKTOP_USER_AGENT);
-        webView.loadData("<!DOCTYPE html>\n" +
-                "<html>\n" +
-                "<head>\n" +
-                "  \n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "<style>\n" +
-                "    html, body {\n" +
-                "      width: 100%;\n" +
-                "      height: 100%;\n" +
-                "      margin: 0;\n" +
-                "      padding: 0;\n" +
-                "      overflow: hidden;\n" +
-                "    }\n" +
-                "\n" +
-                "    #calculator {\n" +
-                "      width: 100%;\n" +
-                "      height: 100%;\n" +
-                "    }\n" +
-                "  </style>" +
-                "  <meta charset=\"utf-8\">\n" +
-                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
-                "\n" +
-                "  <script src=\"https://www.desmos.com/api/v1.1/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6\"></script>\n" +
-                "\n" +
-                "\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "  <div id=\"calculator\"></div>\n" +
-                "\n" +
-                "  <script >\n" +
-                "    var elt = document.getElementById('calculator');\n" +
-                "var calcOpts = {\n" +
-                "      lockViewport: false,\n" +
-                "      zoomButtons: true,\n" +
-                "      expressions: false,\n" +
-                "      settingsMenu: false,\n" +
-                "      border : false\n" +
-                "    };" +
-                "    var calculator = Desmos.GraphingCalculator(elt,calcOpts);\n" +
-                "    calculator.setExpression({id:'graph1', latex:'" +latex +"'});\n" +
-                "  </script>\n" +
-                "  \n" +
-                "\n" +
-                "\n" +
-                "</body>\n" +
-                "</html>" , "text/html", "UTF-8");
-    }*/
 
     @OnClick(R.id.viewGraph)
     public void onViewGraphClick() {

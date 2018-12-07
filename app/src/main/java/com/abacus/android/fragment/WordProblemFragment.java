@@ -135,7 +135,8 @@ public class WordProblemFragment extends BaseFragment implements WordViewInterac
         btnReTake.setVisibility(View.GONE);
         Bundle bundle = getArguments();
         if ( bundle != null) {
-            edtQuestion.setText(bundle.getString("value"));
+            if( bundle.getInt("fragment") == 1)
+                edtQuestion.setText(bundle.getString("value"));
         }
     }
 
@@ -318,6 +319,7 @@ public class WordProblemFragment extends BaseFragment implements WordViewInterac
             case R.id.correct:
                 problem.setCorrect(true);
                 presenter.sendFeedBack(problem);
+                feedbackLayout.setVisibility(View.GONE);
                 break;
             case R.id.incorrect:
                 enterFeedBack();

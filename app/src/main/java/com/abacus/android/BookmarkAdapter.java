@@ -90,9 +90,9 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
             mathView.setClickable(true);
         }
 
-        @OnClick(R.id.mathView)
+        @OnClick(R.id.mathViewLayout)
         void onEquationClick() {
-            Intent intent = new Intent(context, LoginActivity.class);
+            Intent intent = new Intent(context, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("fragment",0);
             intent.putExtra("value", bookmarkList.get(getAdapterPosition()).getValue());
@@ -101,8 +101,8 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
         @OnClick(R.id.wordText)
         void onWordProblemClick() {
-            Intent intent = new Intent(context, LoginActivity.class);
-            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(context, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             Bundle bundle = new Bundle();
             bundle.putInt("fragment",1);
             bundle.putString("value", bookmarkList.get(getAdapterPosition()).getValue());

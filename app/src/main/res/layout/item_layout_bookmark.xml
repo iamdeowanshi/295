@@ -36,21 +36,27 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold" />
 
-    <katex.hourglass.in.mathlib.MathView
-        android:id="@+id/mathView"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_weight="1"
-        android:layout_gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:setText="@string/sample_equ">
+        android:id="@+id/mathViewLayout">
 
-    </katex.hourglass.in.mathlib.MathView>
+        <katex.hourglass.in.mathlib.MathView
+            android:id="@+id/mathView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setClickable="true"
+            app:setText="@string/sample_equ"/>
+
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/btnBookmark"

@@ -29,6 +29,8 @@ public class Config {
     public static final String API_BASE_URL_PRODUCTION = "https://api.mathpix.com/v3/";
     public static final String WORD_PROBLEM = "http://34.220.72.152:5000";
 
+    public static final String WORD_PROBLEM_FEEDBACK = "http://34.220.72.152:5001";
+
     public static final String TIMEZONE_URL = "http://api.timezonedb.com/v2/";
 
 

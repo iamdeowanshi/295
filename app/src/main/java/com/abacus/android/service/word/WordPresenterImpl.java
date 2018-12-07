@@ -48,10 +48,12 @@ public class WordPresenterImpl extends BasePresenter<WordViewInteractor> impleme
                     }}));
     }
 
+
     @Override
     public void sendFeedBack(WordProblem problem) {
+        WordService feedbackService = ApiModule.getInstance().getFeedbackService();
         getViewInteractor().showProgress();
-        Observable<Void> observable = wordService.sendFeedBack(problem);
+        Observable<Void> observable = feedbackService.sendFeedBack(problem);
         new CompositeDisposable().add(observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

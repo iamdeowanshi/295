@@ -56,6 +56,17 @@ public class ApiModule {
         return retrofit.create(LatexService.class);
     }
 
+    public WordService getFeedbackService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Config.WORD_PROBLEM_FEEDBACK)
+                .client(provideOkHttpClient(provideInterceptors()))
+                .addConverterFactory(provideGsonConverterFactory(new Gson()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+        return retrofit.create(WordService.class);
+    }
+
     public Converter.Factory provideGsonConverterFactory(Gson gson) {
         return GsonConverterFactory.create(gson);
     }

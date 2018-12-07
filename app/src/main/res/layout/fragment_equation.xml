@@ -84,10 +84,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:gravity="center_vertical|center_horizontal"
-        android:textAllCaps="true"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
         android:background="@drawable/tansition"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/black"
         android:layout_margin="10dp"/>
 
     <LinearLayout

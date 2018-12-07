@@ -8,6 +8,8 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.abacus.android.base.BaseActivity;
+import com.abacus.android.model.User;
+import com.abacus.android.util.PreferenceUtil;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +33,7 @@ public class AnalyticsActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         setContentView(R.layout.activity_analytics);
         ButterKnife.bind(this);
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setLoadWithOverviewMode(true);
@@ -40,7 +43,11 @@ public class AnalyticsActivity extends BaseActivity {
         webView.getSettings().setMinimumFontSize(16);
         webView.getSettings().setUserAgentString(DESKTOP_USER_AGENT);
         if (bundle == null) {
-            //webView.loadUrl("https://search-abacus-dn5ucj45reb3vvgd2kltvi637i.us-east-1.es.amazonaws.com/_plugin/kibana/goto/a76f419acc236a8d05ecc57150ca845b");
+            PreferenceUtil util = new PreferenceUtil(this);
+            User user = (User) util.read("USER", User.class);
+
+            String url = "https://search-abacus-dn5ucj45reb3vvgd2kltvi637i.us-east-1.es.amazonaws.com/_plugin/kibana/app/kibana#/dashboard/406a79e0-f5ac-11e8-97a0-dbffaad31fa3?_g=()&_a=(description:'',filters:!(),fullScreenMode:!f,options:(darkTheme:!f,hidePanelTitles:!f,useMargins:!t),panels:!((embeddableConfig:(),gridData:(h:15,i:'1',w:24,x:0,y:0),id:'06e35850-f425-11e8-97a0-dbffaad31fa3',panelIndex:'1',type:visualization,version:'6.3.1'),(embeddableConfig:(),gridData:(h:15,i:'2',w:24,x:24,y:0),id:'2b20f710-f428-11e8-97a0-dbffaad31fa3',panelIndex:'2',type:visualization,version:'6.3.1'),(embeddableConfig:(),gridData:(h:15,i:'3',w:24,x:0,y:15),id:c13ca680-f43d-11e8-97a0-dbffaad31fa3,panelIndex:'3',type:visualization,version:'6.3.1'),(embeddableConfig:(),gridData:(h:15,i:'4',w:24,x:24,y:15),id:bf220d20-f5ac-11e8-97a0-dbffaad31fa3,panelIndex:'4',type:visualization,version:'6.3.1'),(embeddableConfig:(),gridData:(h:15,i:'5',w:24,x:0,y:30),id:'0230a590-f5ad-11e8-97a0-dbffaad31fa3',panelIndex:'5',type:visualization,version:'6.3.1')),query:(language:kuery,query:" + user.getEmail().split("@")[0] + "),timeRestore:!f,title:'User+Dashboard',viewMode:view)";
+            webView.loadUrl(url);
             return;
         }
 
