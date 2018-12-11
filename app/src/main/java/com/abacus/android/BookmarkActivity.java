@@ -28,7 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BookmarkActivity extends BaseActivity {
+public class BookmarkActivity extends BaseActivity implements BookmarkAdapter.BookmarkListener {
 
     @BindView(R.id.list)
     RecyclerView list;
@@ -55,6 +55,7 @@ public class BookmarkActivity extends BaseActivity {
         //List<String> bookmarks = Collections.nCopies(10, this.getString(R.string.sample_equ));
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(bookmarkAdapter);
+        bookmarkAdapter.setBookmarkClickListner(this);
 
     }
 
@@ -84,5 +85,14 @@ public class BookmarkActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemRemove(int position) {
+        bookmarks.remove(position);
+        list.removeViewAt(position);
+        bookmarkAdapter.notifyItemRemoved(position);
+        bookmarkAdapter.notifyItemRangeChanged(position, bookmarks.size());
+        bookmarkAdapter.notifyDataSetChanged();
     }
 }

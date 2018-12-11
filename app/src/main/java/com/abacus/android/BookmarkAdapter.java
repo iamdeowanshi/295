@@ -20,6 +20,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,10 +36,16 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
     private List<Bookmark> bookmarkList;
     private Context context;
+    private BookmarkListener listener;
 
     public BookmarkAdapter(Context context, List<Bookmark> bookmarkList) {
         this.context = context;
         this.bookmarkList = bookmarkList;
+        Collections.reverse(bookmarkList);
+    }
+
+    public void setBookmarkClickListner(BookmarkListener bookmarkListener) {
+        this.listener = bookmarkListener;
     }
 
     @NonNull
@@ -62,7 +71,6 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
             holder.mathView.setVisibility(View.GONE);
         }
         holder.index.setText((position + 1) +(":"));
-
 
     }
 
@@ -124,10 +132,9 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
                 }
             });
-            bookmarkList.remove(getAdapterPosition());
             logEvent(user);
-            notifyItemRemoved(getAdapterPosition());
-            notifyDataSetChanged();
+            listener.onItemRemove(getAdapterPosition());
+
         }
 
         private void logEvent(User user) {
@@ -139,5 +146,10 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
             new LogEventImp().logEvent(logMap);
         }
+    }
+
+    interface BookmarkListener {
+
+        void onItemRemove(int postion);
     }
 }

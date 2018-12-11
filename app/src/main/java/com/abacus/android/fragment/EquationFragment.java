@@ -22,6 +22,7 @@ import com.abacus.android.R;
 import com.abacus.android.base.BaseFragment;
 import com.abacus.android.equation.parser.InputClassifier;
 import com.abacus.android.equation.solver.RPNCalc;
+import com.abacus.android.equation.solver.ResultObj;
 import com.abacus.android.model.Bookmark;
 import com.abacus.android.model.History;
 import com.abacus.android.model.User;
@@ -165,7 +166,8 @@ public class EquationFragment extends BaseFragment {
         solution = formatOutput(solution);
         if (inputClassifier.getOperation().equalsIgnoreCase("General")){
             input = input.replace("{","(").replace("}",")");
-            List<String> steps = new RPNCalc(input).eval().getSteps();
+            ResultObj obj = new RPNCalc(input).eval();
+            List<String> steps = obj.getSteps();
             StringBuilder sb  = new StringBuilder();
             int count = 1;
             for (int i =0 ; i< steps.size() ; i++) {
@@ -181,7 +183,8 @@ public class EquationFragment extends BaseFragment {
                 }
             }
 
-            solution = sb.toString();
+            if (!obj.getStatus().equalsIgnoreCase("ERROR"))
+                solution = sb.toString();
         }
         sendLog("equation-solver", inputClassifier.getOperation());
         txtSolution.setText("\n" + solution);

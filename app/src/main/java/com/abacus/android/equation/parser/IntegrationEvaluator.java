@@ -52,7 +52,7 @@ public class IntegrationEvaluator {
         int toEnd=0;
 
         //\frac { d } { d x } x ^ { 2 }
-        //\int x ^ { 2 } d x
+        //\int x ^ { 2 } d xSubSubwq
         //\int _ { 0 } ^ { 1 } x ^ { 2 } d x
 
         for(int i=0; i<expr.length() && !tEnd ;i++){

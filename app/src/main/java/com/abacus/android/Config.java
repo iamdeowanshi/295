@@ -27,9 +27,9 @@ public class Config {
     // API related constants/configurations - used in ApiModule
     //--------------------------------------------------------------------------------
     public static final String API_BASE_URL_PRODUCTION = "https://api.mathpix.com/v3/";
-    public static final String WORD_PROBLEM = "http://34.220.72.152:5000";
+    public static final String WORD_PROBLEM = "http://34.222.28.253:5000";
 
-    public static final String WORD_PROBLEM_FEEDBACK = "http://34.220.72.152:5001";
+    public static final String WORD_PROBLEM_FEEDBACK = "http://34.222.28.253:5001";
 
     public static final String TIMEZONE_URL = "http://api.timezonedb.com/v2/";
 
@@ -38,7 +38,7 @@ public class Config {
     public static final String WORD_PROBLEM_URL = WORD_PROBLEM;
 
     public static final String LATEX_URL = API_BASE_URL_PRODUCTION;
-    public static final String LOGGING_URL = "http://34.220.72.152:8081";
+    public static final String LOGGING_URL = "http://34.222.28.253:8081";
 
 
     // Common http headers required to be added by interceptor
@@ -48,7 +48,7 @@ public class Config {
     }};
 
     // Key
-    public static final String KEY_ = "91221591f3415b3ea83e";
+    public static final String KEY_ = "04e355de5c5e2857a452";
     public static final String KEY_TIMEZONE = "AZB2TC5HOU68";
     public static final String FORMAT_TIMEZONE = "json";
     public static final String BY_TIMEZONE = "position";

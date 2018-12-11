@@ -42,7 +42,7 @@ public class RPNCalc {
                 ans = e1 + e2;
                 break;
             case "-":
-                operation = "SUBTRATION";
+                operation = "SUBTRACTION";
                 ans = e1 - e2;
                 break;
             case "*":
@@ -139,6 +139,7 @@ public class RPNCalc {
                 return Integer.valueOf(values[0]);
 
             return val;
+
 
     }
 

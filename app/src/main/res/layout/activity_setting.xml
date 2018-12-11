@@ -29,9 +29,9 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/btnBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnBack"
                     android:padding="10dp"
                     android:src="@drawable/ic_arrow_back"/>
 
@@ -42,8 +42,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="Profile"
-                    android:textSize="20sp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
@@ -82,11 +82,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccentDark"
         android:text="Logout"
-        android:id="@+id/logout"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

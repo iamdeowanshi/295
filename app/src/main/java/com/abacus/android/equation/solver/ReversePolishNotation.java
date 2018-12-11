@@ -136,6 +136,11 @@ public class ReversePolishNotation {
                     str1.append(processed.charAt(next));
                     next++;
                 }
+                if(next == processed.length()){
+                    tokens.add(String.valueOf("+"));
+                    tokens.add(str1.toString());
+                    break;
+                }
                 tokens.add(str1.toString());
                 str1.setLength(0);
                 i = next - 1;
